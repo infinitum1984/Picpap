@@ -1,5 +1,5 @@
 package com.empty.picpap.core.domain
 
-interface Mapper<T> {
-    fun to(): T
+interface Mapper<I,O> {
+    fun map(input: I): O
 }
