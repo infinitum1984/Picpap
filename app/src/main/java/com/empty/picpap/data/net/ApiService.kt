@@ -8,6 +8,6 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("photos/random/?client_id=3WIvJQnUh4AomoGS0wBgvdlHmSX2XhK-c3bVdJer_po&orientation=portrait")
-    fun getRandomPhoto(): Call<PhotoCloud>
+    suspend fun getRandomPhoto(): Response<PhotoCloud>
 
 }

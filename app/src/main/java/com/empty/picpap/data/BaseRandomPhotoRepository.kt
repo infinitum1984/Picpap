@@ -1,5 +1,6 @@
 package com.empty.picpap.data
 
+import android.util.Log
 import com.empty.picpap.core.data.DataResult
 import com.empty.picpap.core.data.ErrorType
 import com.empty.picpap.core.data.RandomPhotoRepository
@@ -9,8 +10,12 @@ import com.empty.picpap.data.mapper.CloudPhotoMapper
 import com.empty.picpap.data.model.PhotoData
 import com.empty.picpap.core.data.net.CloudDataSource
 import com.empty.picpap.data.mapper.PhotoDataToCachePhotoMapper
+import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class BaseRandomPhotoRepository(
+@Singleton
+class BaseRandomPhotoRepository @Inject constructor(
     private val cloudDataSource: CloudDataSource,
     private val cloudPhotoMapper: CloudPhotoMapper,
     private val cacheDataSource: CacheDataSource
@@ -20,8 +25,13 @@ class BaseRandomPhotoRepository(
 
     override suspend fun getRandomPhoto(): DataResult<PhotoData> {
         val randomPhoto = cloudDataSource.getRandomPhoto()
+
         return when (randomPhoto) {
-            is CloudResult.Error -> DataResult.Error(ErrorType.NO_CONNECTION)
+            is CloudResult.Error -> {
+                Log.d("ViewModel", randomPhoto.error.message?:"error")
+
+                DataResult.Error(ErrorType.NO_CONNECTION)
+            }
             is CloudResult.Success -> {
                 val photo = cloudPhotoMapper.map(randomPhoto.data)
                 currentPhoto = photo

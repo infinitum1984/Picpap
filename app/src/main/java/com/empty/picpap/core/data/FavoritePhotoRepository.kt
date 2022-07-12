@@ -6,5 +6,5 @@ interface FavoritePhotoRepository {
 
     suspend fun getFavoritePhotos(): DataResult<List<PhotoData>>
 
-    fun removePhoto(id: Int)
+    fun removePhoto(id: Long)
 }

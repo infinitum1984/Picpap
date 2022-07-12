@@ -10,8 +10,8 @@ interface PhotoDao{
     fun getFavoritePhotos(): List<CachePhoto>
 
     @Query("DELETE FROM CachePhoto WHERE id = :id")
-    fun deletePhotoById(id: Int)
+    fun deletePhotoById(id: Long)
 
     @Insert
-    fun addPhoto(cachePhoto: CachePhoto): Int
+    fun addPhoto(cachePhoto: CachePhoto): Long
 }

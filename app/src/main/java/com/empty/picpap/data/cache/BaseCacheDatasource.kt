@@ -8,14 +8,12 @@ import javax.inject.Singleton
 
 @Singleton
 class BaseCacheDatasource @Inject constructor(
-    database: PicpapeDatabase,
+    private val photoDao: PhotoDao,
     private val mapper: PhotoDataToCachePhotoMapper
 ) : CacheDataSource {
-    private val photoDao by lazy { database.photoDao() }
-
     override fun getFavoritePhotos() = photoDao.getFavoritePhotos()
 
-    override fun removePhotoById(id: Int) = photoDao.deletePhotoById(id)
+    override fun removePhotoById(id: Long) = photoDao.deletePhotoById(id)
 
     override fun addPhoto(photoData: PhotoData) = photoDao.addPhoto(mapper.map(photoData))
 }

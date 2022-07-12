@@ -13,7 +13,8 @@ abstract class PicpapeDatabase : RoomDatabase() {
     companion object {
         fun create(context: Context) = Room.databaseBuilder(
             context,
-            PicpapeDatabase::class.java, "picpape-database"
+            PicpapeDatabase::class.java,
+            "picpape-database"
         ).build()
     }
 }

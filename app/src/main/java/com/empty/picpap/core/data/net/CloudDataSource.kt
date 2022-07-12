@@ -4,7 +4,7 @@ import com.empty.picpap.data.net.model.PhotoCloud
 
 interface CloudDataSource {
 
-    fun getRandomPhoto(): CloudResult<PhotoCloud>
+    suspend fun getRandomPhoto(): CloudResult<PhotoCloud>
 
 }
 

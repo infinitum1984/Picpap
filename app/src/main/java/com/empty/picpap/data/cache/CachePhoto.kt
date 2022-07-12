@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class CachePhoto(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long,
     val unsplashId: String,
     val rawUrl: String,
     val fullUrl: String,

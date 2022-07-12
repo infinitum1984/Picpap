@@ -9,12 +9,12 @@ import javax.inject.Singleton
 @Singleton
 class BaseCloudDataSource @Inject constructor(private val apiService: ApiService) : CloudDataSource {
 
-    override fun getRandomPhoto() =
+    override suspend fun getRandomPhoto() =
         try {
             val randomPhoto = apiService.getRandomPhoto()
-            CloudResult.Success(randomPhoto.execute().body()!!)
+            CloudResult.Success(randomPhoto.body()!!)
         } catch (e: Exception) {
-            Log.e("BaseCloudDataSource", e.message.toString())
+            Log.e("BaseCloudDataSource", e.toString())
             CloudResult.Error(e)
         }
 

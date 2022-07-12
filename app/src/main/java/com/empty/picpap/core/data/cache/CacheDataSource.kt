@@ -7,7 +7,7 @@ interface CacheDataSource {
 
     fun getFavoritePhotos(): List<CachePhoto>
 
-    fun removePhotoById(id: Int)
+    fun removePhotoById(id: Long)
 
-    fun addPhoto(photoData: PhotoData): Int
+    fun addPhoto(photoData: PhotoData): Long
 }
